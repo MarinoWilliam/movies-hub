@@ -67,7 +67,7 @@ The server will start on the port specified in the `.env` file (default: 3000).
 
 #### Movie Search
 - **GET** `/movies/search?title=<movie-title>`  
-  Fetches movies from the OMDb API based on the provided title.
+  Fetches movies from the OMDb API based on the provided title even if it is only part of the name.
 
 #### Favorites Management
 - **POST** `/favorites`  
