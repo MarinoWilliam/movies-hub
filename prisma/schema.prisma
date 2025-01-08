@@ -36,6 +36,7 @@ model Favorite {
   movie     Movie    @relation(fields: [movieId], references: [id], onDelete: Cascade)
   userId    Int
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  description String?
   createdAt DateTime @default(now())
 
   @@map("favorites")
