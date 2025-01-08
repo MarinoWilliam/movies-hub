@@ -1,2 +1,2 @@
-export * from './create-bookmark.dto';
-export * from './edit-bookmark.dto';
+export * from './makeFav-favorite.dto';
+export * from './editDesc-favorite.dto';

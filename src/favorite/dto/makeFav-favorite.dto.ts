@@ -4,9 +4,13 @@ import {
   IsString,
 } from 'class-validator';
 
-export class MakefavoritDto {
+export class MakeFavoritDto {
   @IsString()
   @IsNotEmpty()
-  movieId: string;
+  movieimdbID: string;
+
+  @IsString()
+  @IsOptional()
+  description?: string;
 
 }
