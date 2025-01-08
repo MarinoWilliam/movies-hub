@@ -63,8 +63,36 @@ npm run start
 
 The server will start on the port specified in the `.env` file (default: 3000).
 
+
 ### API Endpoints
 
+#### Sign Up
+
+- `/signup`: Create a new user.
+
+- To create a new account, send a `POST` request to the `/signup` endpoint with the following data:
+
+- `username`: Your desired username.
+- `email`: Your email address.
+- `password`: Your chosen password.
+
+Upon successful sign-up, you will receive a confirmation message and a JSON Web Token (JWT) for authentication.
+
+
+#### Sign In
+
+- `/signin`: Log in with an existing user.
+
+- 
+To log in with an existing account, send a `POST` request to the `/signin` endpoint with the following data:
+
+- `email`: Your registered email.
+- `password`: Your account password.
+
+If the credentials are correct, you will receive a JWT token that you can use to authenticate your requests.
+
+## API Endpoints
+- 
 #### Movie Search
 - **GET** `/movies/search?title=<movie-title>`  
   Fetches movies from the OMDb API based on the provided title even if it is only part of the name.
