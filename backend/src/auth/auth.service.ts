@@ -25,7 +25,7 @@ export class AuthService {
           hash,
         },
       });
-
+      console.log(user)
       return this.signToken(user.id, user.email);
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -47,6 +47,7 @@ export class AuthService {
 
     const pwMatches = await argon2.verify(user.hash, dto.password);
     if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
+    console.log("yes")
     return this.signToken(user.id, user.email);
   }
 

@@ -1,4 +1,8 @@
+
 import React from 'react';
+import MovieCard from '../MovieCard/MovieCard';
+
+import './MoviesList.css'; // Import the specific CSS for MoviesList
 
 interface Movie {
   imdbID: string;
@@ -13,17 +17,19 @@ interface MoviesListProps {
 
 const MoviesList: React.FC<MoviesListProps> = ({ movies }) => {
   return (
-    <div>
+    <div className="movies-list">
       {movies.length > 0 ? (
         movies.map((movie) => (
-          <div key={movie.imdbID}>
-            <h3>{movie.Title}</h3>
-            <img src={movie.Poster} alt={movie.Title} />
-            <p>{movie.Year}</p>
-          </div>
+          <MovieCard
+            key={movie.imdbID}
+            imdbID={movie.imdbID}
+            Title={movie.Title}
+            Poster={movie.Poster}
+            Year={movie.Year}
+          />
         ))
       ) : (
-        <p>No movies found.</p>
+        <p className="no-movies-message">No movies found.</p>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-// import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/NavBar/NavBar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
 import './HomePage.css'
@@ -7,9 +7,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div >
-      {/* <Navbar /> */}
+      <Navbar />
       <div className='homePageContainer' >
-      <SearchBar />
+        <SearchBar />
       </div>
     </div>
   );

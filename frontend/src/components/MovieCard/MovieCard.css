@@ -1,0 +1,35 @@
+/* src/components/MovieCard.css */
+
+.movie-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .movie-card__image {
+    width: 100%;
+    height: 16rem; /* Adjust as needed */
+    object-fit: cover;
+  }
+  
+  .movie-card__content {
+    padding: 1rem;
+  }
+  
+  .movie-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .movie-card__year {
+    color: #4a5568; /* Tailwind's gray-600 */
+    font-size: 1rem;
+  }
+  

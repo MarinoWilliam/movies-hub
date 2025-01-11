@@ -1,0 +1,11 @@
+.SignPopUpContainer{
+    @apply w-2/5 h-4/6 bg-grayBuzz-200 rounded-md fixed top-14 left-96 p-8 z-50 
+}
+
+.overLay{
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-black opacity-70
+}
+
+.closeButton {
+    @apply absolute top-2 right-3 text-sm font-bold text-gray-600 ;
+  }

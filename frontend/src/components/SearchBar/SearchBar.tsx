@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import MoviesList from '../MoviesList/MoviesList';
+import './SearchBar.css'
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState('');
@@ -28,13 +29,17 @@ const SearchBar: React.FC = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        value={query}
-        onChange={handleSearch}
-        placeholder="Search movies..."
-      />
-      <MoviesList movies={movies} />
+
+      <div className="search-bar">
+        <input
+          type="text"
+          value={query}
+          onChange={handleSearch}
+          className="search-input"
+          placeholder="Search movies..."
+        />
+      </div>
+        <MoviesList movies={movies} />
     </div>
   );
 };
