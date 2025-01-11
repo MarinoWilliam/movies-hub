@@ -13,7 +13,6 @@ import {
 } from '@nestjs/common';
 
 import { MovieService } from './movie.service';
-import { SearchByTitleDto } from './dto';
 @Controller('movies')
 export class MovieController {
     constructor(
@@ -21,12 +20,12 @@ export class MovieController {
     ) { }
 
     
-    @Post()
-    createBookmark(
-      @Body() dto: SearchByTitleDto,
+    @Get(':title')
+    searchByTitle(
+      @Param('title') title: string,
     ) {
       return this.movieService.searchByTitle(
-        dto,
+        title
       );
     }
 

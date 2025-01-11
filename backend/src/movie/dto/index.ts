@@ -1,1 +1,1 @@
-export * from './searchByTitle.dto';
+export * from './SearchByImdbId.dto';
