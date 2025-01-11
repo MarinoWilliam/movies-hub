@@ -68,7 +68,7 @@ The server will start on the port specified in the `.env` file (default: 3000).
 
 #### Sign Up
 
-- `/signup`: Create a new user.
+- `auth/signup`: Create a new user.
 
 - To create a new account, send a `POST` request to the `/signup` endpoint with the following data:
 
@@ -81,7 +81,7 @@ Upon successful sign-up, you will receive a confirmation message and a JSON Web 
 
 #### Sign In
 
-- `/signin`: Log in with an existing user.
+- `auth/signin`: Log in with an existing user.
 
 - 
 To log in with an existing account, send a `POST` request to the `/signin` endpoint with the following data:
