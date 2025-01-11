@@ -5,15 +5,12 @@ import {
 
 export const GetUser = createParamDecorator(
   (
-    data: string | undefined,
+    data:  unknown,
     ctx: ExecutionContext,
   ) => {
     const request: Express.Request = ctx
-      .switchToHttp()
-      .getRequest();
-    if (data) {
-      return request.user[data];
-    }
+    .switchToHttp()
+    .getRequest();
     return request.user;
   },
 );

@@ -29,7 +29,7 @@ export class FavoriteController {
     ) { }
 
     @Get()
-    getFavorits(@GetUser('id') userId: number) {
+    getFavorits(@GetUser() userId: number) {
         return this.favoriteService.getFavorits(
             userId,
         );
@@ -38,7 +38,7 @@ export class FavoriteController {
 
     @Post()
     addtoFavorits(
-        @GetUser('id') userId: number,
+        @GetUser() userId: number,
         @Body() dto: MakeFavoritDto,
     ) {
         return this.favoriteService.addtoFavorits(
@@ -49,7 +49,7 @@ export class FavoriteController {
 
     @Patch(':movieID')
     UpdatefavDescription(
-        @GetUser('id') userID: number,
+        @GetUser() userID: number,
         @Param('movieID' ,ParseIntPipe) movieID: number,
         @Body() dto: EditDescDto,
     ) {
@@ -63,7 +63,7 @@ export class FavoriteController {
     @HttpCode(HttpStatus.NO_CONTENT)
     @Delete(':id')
     deleteBookmarkById(
-        @GetUser('id') userId: number,
+        @GetUser() userId: number,
         @Param('id', ParseIntPipe) bookmarkId: number,
     ) {
         return this.favoriteService.deleteFavById(
