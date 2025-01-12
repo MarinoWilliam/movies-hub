@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import LoginForm from '../LoginForm/LoginForm';
 import SignUpForm from "../SignUpForm/SignUpForm";
 
@@ -28,8 +29,8 @@ const SignPopUp: React.FC<SignPopUpProps> = ({ open, source, onClose }) => {
         password,
       });
 
-      console.log('Login successful:', response.data.access_token);
-      localStorage.setItem('access_token', response.data.access_token);
+      const accessToken = response.data.access_token;
+      Cookies.set('access_token', accessToken, { expires: 1, secure: true, sameSite: 'Strict' });
 
       onClose();
     } catch (error) {

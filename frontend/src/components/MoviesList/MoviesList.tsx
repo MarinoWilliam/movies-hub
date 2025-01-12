@@ -29,7 +29,7 @@ const MoviesList: React.FC<MoviesListProps> = ({ movies }) => {
           />
         ))
       ) : (
-        <p className="no-movies-message">No movies found.</p>
+        <p className="no-movies-message"></p>
       )}
     </div>
   );

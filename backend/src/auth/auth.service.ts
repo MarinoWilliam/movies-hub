@@ -37,6 +37,24 @@ export class AuthService {
     }
   }
 
+  async checkUser(userId: number) {
+    console.log('called check' ,userId)
+    if(userId){
+      const user = await this.prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+      });
+      if (user) {
+        console.log("found ", user.userName);
+        return { "valid": true, "user": { "id": user.id, "name": user.userName } };
+      }
+    }
+    console.log('not found')
+     return { "valid": false, "user": null }; 
+
+  }
+
   async signin(dto: SignInAuthDto) {
     const user = await this.prisma.user.findUnique({
       where: {
@@ -47,7 +65,6 @@ export class AuthService {
 
     const pwMatches = await argon2.verify(user.hash, dto.password);
     if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
-    console.log("yes")
     return this.signToken(user.id, user.email);
   }
 
@@ -59,7 +76,7 @@ export class AuthService {
     const secret = this.config.get('JWT_SECRET');
 
     const token = await this.jwt.signAsync(payload, {
-      expiresIn: '15m',
+      expiresIn: '60m',
       secret: secret,
     });
 

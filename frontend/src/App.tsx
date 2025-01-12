@@ -8,11 +8,13 @@ import './App.css';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route index element={<HomePage />} />
-      </Routes>
-    </Router>
+    <div className='app_container'>
+      <Router >
+        <Routes>
+          <Route index element={<HomePage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

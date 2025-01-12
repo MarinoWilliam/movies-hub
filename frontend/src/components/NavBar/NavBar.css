@@ -1,5 +1,5 @@
 .navbar {
-    @apply bg-grayBuzz-200 w-full  h-10 px-3 ;
+    @apply bg-grayBuzz-200 w-full  h-10 px-5 ;
   }
   
   .container {
