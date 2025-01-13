@@ -1,8 +1,0 @@
-.search-bar {
-    @apply block w-3/4 max-w-lg mx-auto my-12; /* Adjust width, center it, and add vertical margin */
-  }
-  
-  .search-input {
-    @apply w-full px-4 border rounded-full border-greenBuzz-200 focus:border-orangeBuzz-200 focus:ring focus:ring-greenBuzz-200 text-lg; /* Larger size and colors */
-  }
-  

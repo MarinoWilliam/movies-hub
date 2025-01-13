@@ -42,4 +42,5 @@ model Favorite {
   createdAt DateTime @default(now())
 
   @@map("favorites")
+  @@unique([userId, movieId])
 }

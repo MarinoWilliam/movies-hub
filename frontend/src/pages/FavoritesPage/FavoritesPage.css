@@ -1,0 +1,18 @@
+/* .FavoritesPage_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  } */
+
+
+  /* FavoritesPage.css */
+
+.favorites-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8;
+  }
+  
+  .no-movies-message {
+    @apply col-span-full text-center text-xl text-gray-500 mt-48;
+  }
+  

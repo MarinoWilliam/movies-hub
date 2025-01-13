@@ -17,12 +17,26 @@ export class FavoriteService {
         private movieService: MovieService
     ) { }
 
-    getFavorits(userId: number) {
-        return this.prisma.favorite.findMany({
+    async getFavorits(userId: number) {
+        const favorites = await this.prisma.favorite.findMany({
             where: {
                 userId,
             },
+            select: {
+                movieId: true,
+            },
         });
+
+        const movieIds = favorites.map(favorite => favorite.movieId);
+
+        const movies = await this.prisma.movie.findMany({
+            where: {
+                id: {
+                    in: movieIds,
+                },
+            },
+        });
+        return movies;
     }
 
 
@@ -48,6 +62,21 @@ export class FavoriteService {
             });
         }
         console.log(movie)
+
+        const existingFavorite = await this.prisma.favorite.findUnique({
+            where: {
+                userId_movieId: {
+                    userId: userId,
+                    movieId: movie.id,
+                },
+            },
+        });
+
+        if (existingFavorite) {
+            return existingFavorite;
+        }
+
+
         const favorite = await this.prisma.favorite.create({
             data: {
                 userId,
@@ -88,26 +117,24 @@ export class FavoriteService {
     }
 
     async deleteFavById(
-        userID: number,
-        movieID: number,
+        userId: number,
+        movieId: string,
     ) {
-        const movie =
-            await this.prisma.favorite.findUnique({
-                where: {
-                    id: movieID,
-                },
-            });
-
-        if (!movie || movie.userId !== userID)
-            throw new ForbiddenException(
-                'Access to resources denied',
-            );
+        let movie = await this.prisma.movie.findUnique({
+            where: {
+                imdbID: movieId,
+            },
+        });
 
         await this.prisma.favorite.delete({
             where: {
-                id: movieID,
+                userId_movieId: {
+                    userId,
+                    movieId:movie.id,
+                },
             },
         });
+
     }
 }
 

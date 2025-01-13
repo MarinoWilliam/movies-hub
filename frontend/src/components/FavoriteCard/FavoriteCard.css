@@ -1,24 +1,24 @@
-  .movie-card {
+.favorite-card {
     @apply relative bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-200 ease-in-out hover:scale-105;
   }
   
-  .movie-card__image {
+  .favorite-card__image {
     @apply w-full h-64 object-cover;
   }
   
-  .movie-card__content {
-    @apply  p-4 h-32;
+  .favorite-card__content {
+    @apply  p-4;
   }
   
-  .movie-card__title {
+  .favorite-card__title {
     @apply text-lg font-semibold mb-2;
   }
   
-  .movie-card__year {
+  .favorite-card__year {
     @apply text-gray-600 text-base;
   }
   
-  .movie-card__sub-title {
+  .favorite-card__sub-title {
     @apply absolute bottom-3 left-0 right-0 flex items-end justify-between mt-4 px-4;
   }
   

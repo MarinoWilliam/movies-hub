@@ -1,30 +1,32 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'
 
 import SignPopUp from '../SignPopUp/SignPopUp';
 
-import './NavBar.css'
+import './NavBar.css';
 
 const Navbar: React.FC = () => {
     const [isPopedUp, setIsPopedUp] = useState<boolean>(false);
-    const [user, setUser] = useState<{ id: number; name: string } | null>(null)
+    const [user, setUser] = useState<{ id: number; name: string } | null>(null);
     const [popUpSource, setPopUpSource] = useState<string>('');
+    const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false); 
+
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const validateToken = async () => {
             const accessToken = Cookies.get('access_token') || '';
-            console.log( 'from the bar ', accessToken)
             try {
                 const response = await axios.get('http://localhost:3333/auth', {
                     headers: {
-                      Authorization: `Bearer ${accessToken}`, 
+                        Authorization: `Bearer ${accessToken}`,
                     },
-                  });
+                });
 
-                if(response.data.valid){
-                    setUser(response.data.user)
+                if (response.data.valid) {
+                    setUser(response.data.user);
                 }
             } catch (error) {
                 console.error('Token validation failed:', error);
@@ -45,20 +47,44 @@ const Navbar: React.FC = () => {
     }, []);
 
     const handleLogout = useCallback(() => {
-        Cookies.remove('access_token'); // Remove the token from cookies
-        setUser(null); 
-      }, []);
+        Cookies.remove('access_token'); 
+        setUser(null);
+        navigate('/')
+    }, [navigate]);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen((prev) => !prev); 
+    };
+
+    const goToFavorites = () => {
+        navigate('/favorites'); 
+        setIsDropdownOpen(false); 
+    };
+    const goToHome = () => {
+        navigate('/'); 
+        setIsDropdownOpen(false); 
+    };
 
     return (
         <nav className="navbar">
             <SignPopUp open={isPopedUp} source={popUpSource} onClose={handleClosePopup} />
             <div className="container">
-                <div className="logo">Movies Hub</div>
+                <div className="logo" onClick={goToHome}>Movies Hub</div>
                 {user ? (
                     <div className="auth-buttons flex justify-around">
-                        <button className="signup-btn" onClick={handleLogout}>
-                            Log Out
+                        <button className="profile-btn" onClick={toggleDropdown}>
+                            {user.name} ▼ 
                         </button>
+                        {isDropdownOpen && (
+                            <div className="dropdown-menu">
+                                <button className="dropdown-item" onClick={goToFavorites}>
+                                    Go to Favorites
+                                </button>
+                                <button className="dropdown-item" onClick={handleLogout}>
+                                    Log Out
+                                </button>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <div className="auth-buttons flex justify-around">

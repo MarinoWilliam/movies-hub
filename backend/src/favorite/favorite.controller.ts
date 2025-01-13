@@ -61,14 +61,14 @@ export class FavoriteController {
     }
 
     @HttpCode(HttpStatus.NO_CONTENT)
-    @Delete(':id')
-    deleteBookmarkById(
+    @Delete(':movieid')
+    deleteFavoriteById(
         @GetUser() userId: number,
-        @Param('id', ParseIntPipe) bookmarkId: number,
+        @Param('movieid') movieId: string,
     ) {
         return this.favoriteService.deleteFavById(
             userId,
-            bookmarkId,
+            movieId,
         );
     }
 }
