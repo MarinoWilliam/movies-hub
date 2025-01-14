@@ -46,8 +46,8 @@ const SignPopUp: React.FC<SignPopUpProps> = ({ open, source, onClose }) => {
         password,
       });
 
-      console.log('Signup successful:', response.data.access_token);
-      localStorage.setItem('access_token', response.data.access_token);
+      const accessToken = response.data.access_token;
+      Cookies.set('access_token', accessToken, { expires: 1, secure: true, sameSite: 'Strict' });
 
       onClose();
     } catch (error) {

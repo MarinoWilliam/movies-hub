@@ -9,6 +9,7 @@ interface Movie {
   Title: string;
   Poster: string;
   Year: string;
+  Favorite: boolean;
 }
 
 interface MoviesListProps {
@@ -26,6 +27,7 @@ const MoviesList: React.FC<MoviesListProps> = ({ movies }) => {
             Title={movie.Title}
             Poster={movie.Poster}
             Year={movie.Year}
+            Favorite={movie.Favorite}
           />
         ))
       ) : (

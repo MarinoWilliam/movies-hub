@@ -44,12 +44,13 @@ const Navbar: React.FC = () => {
     const handleClosePopup = useCallback(() => {
         setIsPopedUp(false);
         setPopUpSource('');
+        setIsDropdownOpen(false); 
     }, []);
 
     const handleLogout = useCallback(() => {
         Cookies.remove('access_token'); 
         setUser(null);
-        navigate('/')
+        navigate(0)
     }, [navigate]);
 
     const toggleDropdown = () => {
