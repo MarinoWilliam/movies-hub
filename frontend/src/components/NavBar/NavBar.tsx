@@ -1,40 +1,20 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
-
+import { useUser } from '../../context/User.context';
 import SignPopUp from '../SignPopUp/SignPopUp';
 
 import './NavBar.css';
 
 const Navbar: React.FC = () => {
+    
+    const {user, setUser} = useUser();
     const [isPopedUp, setIsPopedUp] = useState<boolean>(false);
-    const [user, setUser] = useState<{ id: number; name: string } | null>(null);
     const [popUpSource, setPopUpSource] = useState<string>('');
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false); 
 
     const navigate = useNavigate(); 
 
-    useEffect(() => {
-        const validateToken = async () => {
-            const accessToken = Cookies.get('access_token') || '';
-            try {
-                const response = await axios.get('http://localhost:3333/auth', {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
-
-                if (response.data.valid) {
-                    setUser(response.data.user);
-                }
-            } catch (error) {
-                console.error('Token validation failed:', error);
-            }
-        };
-
-        validateToken();
-    }, [isPopedUp]);
 
     const handleOpenPopup = useCallback((source: string) => {
         setPopUpSource(source);
@@ -51,7 +31,7 @@ const Navbar: React.FC = () => {
         Cookies.remove('access_token'); 
         setUser(null);
         navigate(0)
-    }, [navigate]);
+    }, []);
 
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev); 

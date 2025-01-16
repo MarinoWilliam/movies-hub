@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 
 import './MoviesList.css'; // Import the specific CSS for MoviesList
@@ -16,7 +16,11 @@ interface MoviesListProps {
   movies: Movie[];
 }
 
+
 const MoviesList: React.FC<MoviesListProps> = ({ movies }) => {
+  
+
+
   return (
     <div className="movies-list">
       {movies.length > 0 ? (

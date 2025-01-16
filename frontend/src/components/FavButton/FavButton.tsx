@@ -1,10 +1,12 @@
 // src/components/MovieCard.tsx
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import SignPopUp from '../SignPopUp/SignPopUp';
+import { color } from '@mui/system';
+import { red } from '@mui/material/colors';
 
 
 interface MovieCheck {
@@ -15,6 +17,10 @@ interface MovieCheck {
 const FavButton: React.FC<MovieCheck> = ({ Favorite, imdbID }) => {
     const [isPopedUp, setIsPopedUp] = useState<boolean>(false);
     const [customeFavorite, setCustomeFavorite] = useState<boolean>(Favorite);
+
+    useEffect(() => {
+        setCustomeFavorite(Favorite)
+    }, [Favorite]);
 
 
     const handleClosePopup = useCallback(() => {
@@ -34,7 +40,6 @@ const FavButton: React.FC<MovieCheck> = ({ Favorite, imdbID }) => {
                 }
             );
             setCustomeFavorite(true)
-            console.log('added? ', response.data);
 
         } catch (error) {
             setIsPopedUp(true);
@@ -70,7 +75,7 @@ const FavButton: React.FC<MovieCheck> = ({ Favorite, imdbID }) => {
         <div>
             <SignPopUp open={isPopedUp} source={'log in'} onClose={handleClosePopup} />
             {customeFavorite ? (
-                <FaHeart onClick={handleremoveFav} />
+                <FaHeart style={{color: '#b71c1c'}} onClick={handleremoveFav} />
             ) : (
                 <FaRegHeart onClick={handleAddFav} />
             )}

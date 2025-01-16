@@ -6,6 +6,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import SignUpForm from "../SignUpForm/SignUpForm";
 
 import './SignPopUp.css';
+import { useUser } from '../../context/User.context';
 
 interface SignPopUpProps {
   open: boolean;
@@ -14,6 +15,9 @@ interface SignPopUpProps {
 }
 
 const SignPopUp: React.FC<SignPopUpProps> = ({ open, source, onClose }) => {
+  const {validateToken} = useUser();
+
+
   const [mySource, setMySource] = useState<string>(source);
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const SignPopUp: React.FC<SignPopUpProps> = ({ open, source, onClose }) => {
 
       const accessToken = response.data.access_token;
       Cookies.set('access_token', accessToken, { expires: 1, secure: true, sameSite: 'Strict' });
-
+      validateToken()
       onClose();
     } catch (error) {
       console.error('Error logging in:', error);
@@ -48,7 +52,7 @@ const SignPopUp: React.FC<SignPopUpProps> = ({ open, source, onClose }) => {
 
       const accessToken = response.data.access_token;
       Cookies.set('access_token', accessToken, { expires: 1, secure: true, sameSite: 'Strict' });
-
+      validateToken();
       onClose();
     } catch (error) {
       console.error('Error signing up:', error);

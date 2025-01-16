@@ -14,6 +14,8 @@ interface Movie {
 }
 
 const MovieCard: React.FC<Movie> = ({ imdbID, Title, Poster, Year, Favorite=false}) => {
+
+ 
   
 
   return (
