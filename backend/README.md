@@ -54,17 +54,22 @@ Replace `<username>`, `<password>`, `<host>`, `<port>`, and `<database>` with yo
 ### Database Setup
 
 Run Prisma migrations to set up the database schema:  
-npx prisma migrate dev --name init
-
+npm run db:dev:restart
+this will run the Prisma migrations and start the restart docker contaier for the database
 ### Start the Application
 
 Run the following command to start the server:  
 npm run start
 
-The server will start on the port specified in the `.env` file (default: 3000).
+The server will start on the port specified in the `.env` file.
 
 
 ### API Endpoints
+
+### Check user
+- `auth`: Check for user's state.
+- to check for users, send a `GET` request to 'auth'
+- it retrives user's userName and id.
 
 #### Sign Up
 
@@ -83,16 +88,14 @@ Upon successful sign-up, you will receive a confirmation message and a JSON Web 
 
 - `auth/signin`: Log in with an existing user.
 
-- 
-To log in with an existing account, send a `POST` request to the `/signin` endpoint with the following data:
+- To log in with an existing account, send a `POST` request to the `/signin` endpoint with the following data:
 
 - `email`: Your registered email.
 - `password`: Your account password.
 
 If the credentials are correct, you will receive a JWT token that you can use to authenticate your requests.
 
-## API Endpoints
-- 
+
 #### Movie Search
 - **GET** `/movies/search?title=<movie-title>`  
   Fetches movies from the OMDb API based on the provided title even if it is only part of the name.
