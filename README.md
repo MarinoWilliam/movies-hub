@@ -16,7 +16,7 @@ The backend includes the following:
 
 The frontend of **Movies Hub** is designed to provide a seamless and interactive user experience using modern web technologies:
 
-### Implemented Features:
+### Features:
 - **Authentication**: Fully integrated with the backend to support secure login, registration, and session management.
 - **Interactive UI**: A responsive and visually engaging user interface for an enhanced browsing experience.
 
